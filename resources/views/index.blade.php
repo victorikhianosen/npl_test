@@ -33,7 +33,7 @@
                 @if ($books && $books->isNotEmpty())
                     @foreach ($books as $book)
                         <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                            <img class="w-full" src="{{ asset($book->image) }}" alt="{{ $book->name }}">
+                            <img class="w-full" src="{{ asset($book->image) }}" alt="Booking">
                             <div class="px-6 py-4">
                                 <div class="font-bold text-xl mb-2">{{ $book->name }}</div>
                                 <p class="text-gray-700 text-base mb-1"><strong>Author:</strong> {{ $book->author }}</p>

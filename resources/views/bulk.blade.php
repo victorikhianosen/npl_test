@@ -90,11 +90,11 @@
                         </div>
 
                         <!-- Image Upload -->
-                        <div class="mb-4">
-                            <label class="block text-sm text-gray-600" for="image">Image Files (Optional)</label>
-                            <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="image" name="image[]"
-                                type="file" aria-label="image" multiple>
-                            @error('image.*')
+                        <div class="pt-4">
+                            <label class="block text-sm text-gray-600" for="image">Book Cover Image</label>
+                            <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="image" name="image"
+                                type="file" aria-label="Image" onchange="showFilePreview()">
+                            @error('image')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
                         </div>

@@ -130,7 +130,7 @@ class DashboardController extends Controller
             'publisher' => 'required|string|max:255',
             'year_published' => 'required|integer',
             'file.*' => 'required|file|mimes:pdf|max:99948', // Updated for multiple PDFs
-            'image.*' => 'nullable|image|mimes:jpg,png,jpeg|max:10240' // Optional image validation for multiple images
+            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:10240' // Optional image validation
         ]);
 
         // Handle PDF file uploads
@@ -146,13 +146,9 @@ class DashboardController extends Controller
 
         // Handle image uploads
         if ($request->hasFile('image')) {
-            $imagePaths = [];
-            foreach ($request->file('image') as $image) {
-                $imageName = time() . '_' . uniqid() . '_image.' . $image->getClientOriginalExtension();
-                $image->move(public_path('uploads/images'), $imageName);
-                $imagePaths[] = 'uploads/images/' . $imageName; // Save image path
-            }
-            $validated['image'] = json_encode($imagePaths); // Save image paths as JSON
+            $imageName = time() . '_image.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path('uploads/images'), $imageName);
+            $validated['image'] = 'uploads/images/' . $imageName; // Save image path
         }
 
         // Create a new book entry with file and image paths
